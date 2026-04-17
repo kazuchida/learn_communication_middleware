@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "lean-communication-middleware"
+version = "0.1.0"
+description = ""
+authors = ["Kazuhide Uchida"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "lean_communication_middleware"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+paho-mqtt = "^2.1.0"
+asyncua = "^1.1.8"
+pyzmq = "^26.0.3"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.2.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
