@@ -5,14 +5,14 @@
 ## 前提条件
 
 - Pythonがインストールされていること
-- `opcua`ライブラリがインストールされていること
+- `asyncua`ライブラリがインストールされていること
 
 ### ライブラリのインストール
 
-まず、`opcua`ライブラリをインストールします。
+まず、`asyncua`ライブラリをインストールします。
 
 ```bash
-pip install opcua
+pip install asyncua
 ```
 
 ## Pythonコードの実行
@@ -24,7 +24,7 @@ pip install opcua
 以下のコードを`opcua_server.py`という名前で保存します。
 
 ```python
-from opcua import Server
+from asyncua.sync import Server
 import time
 
 # サーバーを初期化
@@ -69,7 +69,7 @@ finally:
 以下のコードを`opcua_client.py`という名前で保存します。
 
 ```python
-from opcua import Client
+from asyncua.sync import Client
 import time
 
 # クライアントを初期化

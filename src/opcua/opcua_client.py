@@ -1,4 +1,4 @@
-from opcua import Client
+from asyncua.sync import Client
 import time
 
 # クライアントを初期化

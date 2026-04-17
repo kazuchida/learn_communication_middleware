@@ -5,7 +5,7 @@ import time
 class TestOpcuaServer:
     """opcua_server.pyのテスト"""
 
-    @patch("opcua.Server")
+    @patch("asyncua.sync.Server")
     def test_server_sets_endpoint(self, mock_server_class):
         mock_server = MagicMock()
         mock_server_class.return_value = mock_server
@@ -19,7 +19,7 @@ class TestOpcuaServer:
             "opc.tcp://localhost:4840/freeopcua/server/"
         )
 
-    @patch("opcua.Server")
+    @patch("asyncua.sync.Server")
     def test_server_registers_namespace(self, mock_server_class):
         mock_server = MagicMock()
         mock_server.register_namespace.return_value = 2
@@ -33,7 +33,7 @@ class TestOpcuaServer:
         mock_server.register_namespace.assert_called_once_with(uri)
         assert idx == 2
 
-    @patch("opcua.Server")
+    @patch("asyncua.sync.Server")
     def test_server_adds_object_and_variable(self, mock_server_class):
         mock_server = MagicMock()
         mock_server_class.return_value = mock_server
@@ -58,7 +58,7 @@ class TestOpcuaServer:
         mock_obj.add_variable.assert_called_once_with("ns=2;s=MyVariable", "MyVariable", 0)
         mock_var.set_writable.assert_called_once()
 
-    @patch("opcua.Server")
+    @patch("asyncua.sync.Server")
     def test_server_starts_and_stops(self, mock_server_class):
         mock_server = MagicMock()
         mock_server_class.return_value = mock_server
@@ -70,7 +70,7 @@ class TestOpcuaServer:
         mock_server.start.assert_called_once()
         mock_server.stop.assert_called_once()
 
-    @patch("opcua.Server")
+    @patch("asyncua.sync.Server")
     def test_server_sets_variable_value(self, mock_server_class):
         mock_server = MagicMock()
         mock_server_class.return_value = mock_server
@@ -87,7 +87,7 @@ class TestOpcuaServer:
 class TestOpcuaClient:
     """opcua_client.pyのテスト"""
 
-    @patch("opcua.Client")
+    @patch("asyncua.sync.Client")
     def test_client_connects_to_server(self, mock_client_class):
         mock_client = MagicMock()
         mock_client_class.return_value = mock_client
@@ -100,7 +100,7 @@ class TestOpcuaClient:
         mock_client_class.assert_called_once_with(endpoint)
         mock_client.connect.assert_called_once()
 
-    @patch("opcua.Client")
+    @patch("asyncua.sync.Client")
     def test_client_gets_node(self, mock_client_class):
         mock_client = MagicMock()
         mock_client_class.return_value = mock_client
@@ -114,7 +114,7 @@ class TestOpcuaClient:
         mock_client.get_node.assert_called_once_with("ns=2;s=MyVariable")
         assert var is mock_var
 
-    @patch("opcua.Client")
+    @patch("asyncua.sync.Client")
     def test_client_reads_variable_value(self, mock_client_class):
         mock_client = MagicMock()
         mock_client_class.return_value = mock_client
@@ -127,7 +127,7 @@ class TestOpcuaClient:
         mock_var.get_value.assert_called_once()
         assert value == 1234567890.0
 
-    @patch("opcua.Client")
+    @patch("asyncua.sync.Client")
     def test_client_disconnects_on_exit(self, mock_client_class):
         mock_client = MagicMock()
         mock_client_class.return_value = mock_client

@@ -1,4 +1,4 @@
-from opcua import Server
+from asyncua.sync import Server
 import time
 
 # サーバーを初期化
