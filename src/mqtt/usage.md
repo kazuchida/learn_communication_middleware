@@ -82,6 +82,9 @@ topic = "test/topic"
 client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION1)
 
 # ブローカーに接続
+client.connect(broker, port, 60)
+
+# メッセージをパブリッシュ
 client.publish(topic, "Hello, MQTT!")
 
 # 接続を終了
