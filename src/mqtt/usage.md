@@ -1,7 +1,3 @@
-以下に、MQTTのサンプルコードの使い方をMarkdown形式で説明します。
-
----
-
 # MQTT サンプルコードの使い方
 
 このドキュメントでは、PythonでMQTT通信を実装するためのサンプルコードの使い方を説明します。MQTTブローカーには、Mosquittoを使用します。
@@ -72,7 +68,7 @@ mosquitto_sub -h localhost -t test/topic
 
 ### パブリッシャー（送信側）のコード
 
-以下のコードを`publisher.py`という名前で保存します。
+以下のコードを`mqtt_publisher.py`という名前で保存します。
 
 ```python
 import paho.mqtt.client as mqtt
@@ -83,12 +79,9 @@ port = 1883
 topic = "test/topic"
 
 # MQTTクライアントを作成
-client = mqtt.Client()
+client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION1)
 
 # ブローカーに接続
-client.connect(broker, port, 60)
-
-# メッセージをパブリッシュ
 client.publish(topic, "Hello, MQTT!")
 
 # 接続を終了
@@ -99,7 +92,7 @@ client.disconnect()
 
 ### サブスクライバー（受信側）のコード
 
-以下のコードを`subscriber.py`という名前で保存します。
+以下のコードを`mqtt_subscriber.py`という名前で保存します。
 
 ```python
 import paho.mqtt.client as mqtt
@@ -114,7 +107,7 @@ def on_message(client, userdata, msg):
     print(f"Received message: {msg.payload.decode()} on topic {msg.topic}")
 
 # MQTTクライアントを作成
-client = mqtt.Client()
+client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION1)
 
 # コールバック関数を設定
 client.on_message = on_message
@@ -136,13 +129,13 @@ client.loop_forever()
 1. サブスクライバーを実行します。
 
     ```bash
-    python subscriber.py
+    python mqtt_subscriber.py
     ```
 
 2. 別のターミナルでパブリッシャーを実行します。
 
     ```bash
-    python publisher.py
+    python mqtt_publisher.py
     ```
 
 これで、パブリッシャーが送信したメッセージがサブスクライバーで受信され、コンソールに表示されます。

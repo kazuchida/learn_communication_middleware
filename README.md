@@ -20,7 +20,7 @@ This repository contains sample code for three popular communication protocols: 
 - **Full Name**: Zero Message Queue
 - **Description**: ZeroMQ is a high-performance asynchronous messaging library, aimed at use in scalable distributed or concurrent applications. It provides a message queue, but unlike message-oriented middleware, a ZeroMQ system can run without a dedicated message broker.
 - **Use Cases**: ZeroMQ is often used in financial services, telecommunications, military, and many other fields where high-throughput and low-latency communication is crucial.
-- **Directory**: `src/zeromq`
+- **Directory**: `src/zmq`
 
 ## Directory Structure
 
@@ -33,7 +33,7 @@ This repository contains sample code for three popular communication protocols: 
 │   ├── opcua
 │   │   ├── opcua_server.py
 │   │   └── opcua_client.py
-│   └── zeromq
+│   └── zmq
 │       ├── zmq_publisher.py
 │       └── zmq_subscriber.py
 └── README.md
@@ -48,13 +48,13 @@ This repository contains sample code for three popular communication protocols: 
 
 ### Installing Required Packages
 
-To install the required Python packages, run:
+This project uses [Poetry](https://python-poetry.org/) for dependency management. To install all required packages, run:
 
 ```bash
-pip install -r requirements.txt
+poetry install
 ```
 
-The `requirements.txt` file should contain:
+If you prefer to install packages manually with pip, the required packages are:
 
 ```
 paho-mqtt
@@ -106,19 +106,19 @@ python opcua_client.py
 
 #### Starting the ZeroMQ Publisher
 
-Navigate to the `src/zeromq` directory and run the publisher script:
+Navigate to the `src/zmq` directory and run the publisher script:
 
 ```bash
-cd src/zeromq
+cd src/zmq
 python zmq_publisher.py
 ```
 
 #### Starting the ZeroMQ Subscriber
 
-Open another terminal, navigate to the `src/zeromq` directory, and run the subscriber script:
+Open another terminal, navigate to the `src/zmq` directory, and run the subscriber script:
 
 ```bash
-cd src/zeromq
+cd src/zmq
 python zmq_subscriber.py
 ```
 

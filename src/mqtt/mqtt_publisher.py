@@ -6,7 +6,7 @@ port = 1883
 topic = "test/topic"
 
 # MQTTクライアントを作成
-client = mqtt.Client()
+client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION1)
 
 # ブローカーに接続
 client.connect(broker, port, 60)

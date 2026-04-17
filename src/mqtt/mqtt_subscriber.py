@@ -10,7 +10,7 @@ def on_message(client, userdata, msg):
     print(f"Received message: {msg.payload.decode()} on topic {msg.topic}")
 
 # MQTTクライアントを作成
-client = mqtt.Client()
+client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION1)
 
 # コールバック関数を設定
 client.on_message = on_message
